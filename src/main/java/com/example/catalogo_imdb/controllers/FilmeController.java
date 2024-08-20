@@ -27,6 +27,12 @@ public class FilmeController {
         return ResponseEntity.ok(filmes);
     }
 
+    @GetMapping("/buscar")
+    public ResponseEntity<List<Filme>> buscarFilmesPorNome(@RequestParam String nome) {
+        List<Filme> filmes = filmeService.buscarFilmesPorNome(nome);
+        return ResponseEntity.ok(filmes);
+    }
+
     @GetMapping("/buscar-por-diretor")
     public ResponseEntity<List<Filme>> buscarFilmesPorNomeDoDiretor(@RequestParam String nomeDiretor) {
         List<Filme> filmes = filmeService.buscarFilmesPorNomeDoDiretor(nomeDiretor);
@@ -43,11 +49,5 @@ public class FilmeController {
     public ResponseEntity<Void> deletarFilme(@PathVariable Long id) {
         filmeService.deletarFilme(id);
         return ResponseEntity.noContent().build();
-    }
-
-    @GetMapping("/buscar")
-    public ResponseEntity<List<Filme>> buscarFilmesPorNome(@RequestParam String nome) {
-        List<Filme> filmes = filmeService.buscarFilmesPorNome(nome);
-        return ResponseEntity.ok(filmes);
     }
 }
